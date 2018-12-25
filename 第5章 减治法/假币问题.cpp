@@ -1,35 +1,42 @@
-#include<bits/stdc++.h>
-using namespace std;#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-const int N = 8;                       //¼ÙÉèÇó½â8Ã¶Ó²±ÒÎÊÌâ
-int a[N] = {2, 2,  2, 2, 2,1, 2, 2};
+const int N = 8;                       //å‡è®¾æ±‚è§£8æšç¡¬å¸é—®é¢˜
+int a[N] = {2, 2,  2, 2, 2, 1, 2, 2};
+
 int Coin(int low, int high, int n);
 
 int main()
 {
     int i=Coin(0,7,8);
-    cout<<"¼Ù±ÒÊÇµÚ"<<i<<"¸ö"<<endl;
+    cout<<"å‡å¸æ˜¯ç¬¬"<<i<<"ä¸ª"<<endl;
     return 0;
-}//Õæ±ÒµÄÖØÁ¿ÊÇ2£¬¼Ù±ÒµÄÖØÁ¿ÊÇ1
-int Coin(int low, int high, int n)           //ÔÚa[low]~a[high]ÖĞ²éÕÒ¼Ù±Ò
+}//çœŸå¸çš„é‡é‡æ˜¯2ï¼Œå‡å¸çš„é‡é‡æ˜¯1
+int Coin(int low, int high, int n)           //åœ¨a[low]~a[high]ä¸­æŸ¥æ‰¾å‡å¸
 {
-    int i, num1, num2, num3;      // num1¡¢num2ºÍnum3´æ´¢3×éÓ²±ÒµÄ¸öÊı
-    int add1 = 0, add2 = 0;        //add1ºÍadd2´æ´¢Ç°Á½×éÓ²±ÒµÄÖØÁ¿ºÍ
-    if (n == 1)                              //µİ¹é½áÊøµÄÌõ¼ş
-        return low + 1;                         //·µ»ØµÄÊÇĞòºÅ£¬¼´ÏÂ±ê¼Ó1
-    if (n % 3 == 0)                           //3×éÓ²±ÒµÄ¸öÊıÏàÍ¬
+    int i, num1, num2, num3;      // num1ã€num2å’Œnum3å­˜å‚¨3ç»„ç¡¬å¸çš„ä¸ªæ•°
+    int add1 = 0, add2 = 0;        //add1å’Œadd2å­˜å‚¨å‰ä¸¤ç»„ç¡¬å¸çš„é‡é‡å’Œ
+
+
+
+    if (n == 1)                             //é€’å½’ç»“æŸçš„æ¡ä»¶
+        return low + 1;                     //è¿”å›çš„æ˜¯åºå·ï¼Œå³ä¸‹æ ‡åŠ 1
+    if (n % 3 == 0)                         //3ç»„ç¡¬å¸çš„ä¸ªæ•°ç›¸åŒ
         num1 = num2 = n / 3;
-    else                                    //Ç°Á½×éÓĞ Ã¶Ó²±Ò
+    else                                    //å‰ä¸¤ç»„æœ‰n/3æšç¡¬å¸
         num1 = num2 = n / 3 + 1;
     num3 = n - num1 - num2;
-    for (i = 0; i < num1; i++)                    //¼ÆËãµÚ1×éÓ²±ÒµÄÖØÁ¿ºÍ
+
+
+    for (i = 0; i < num1; i++)                    //è®¡ç®—ç¬¬1ç»„ç¡¬å¸çš„é‡é‡å’Œ
         add1 = add1 + a[low + i];
-    for (i = num1; i < num1 + num2; i++)          //¼ÆËãµÚ2×éÓ²±ÒµÄÖØÁ¿ºÍ
+    for (i = num1; i < num1 + num2; i++)          //è®¡ç®—ç¬¬2ç»„ç¡¬å¸çš„é‡é‡å’Œ
         add2 = add2 + a[low + i];
-    if (add1 < add2)             //ÔÚµÚ1×é²éÕÒ£¬ÏÂ±ê·¶Î§ÊÇlow~low+num1-1
+
+
+    if (add1 < add2)             //åœ¨ç¬¬1ç»„æŸ¥æ‰¾ï¼Œä¸‹æ ‡èŒƒå›´æ˜¯low~low+num1-1
         return Coin(low, low + num1 - 1, num1);
-    else if (add1 > add2)  //ÔÚµÚ2×é²éÕÒ£¬ÏÂ±ê·¶Î§low+num1~low+num1+num2-1
+    else if (add1 > add2)       //åœ¨ç¬¬2ç»„æŸ¥æ‰¾ï¼Œä¸‹æ ‡èŒƒå›´low+num1~low+num1+num2-1
         return Coin(low + num1, low + num1 + num2 - 1, num2);
-    else                 //ÔÚµÚ3×é²éÕÒ£¬ÏÂ±ê·¶Î§low+num1+num2~high
+    else                        //åœ¨ç¬¬3ç»„æŸ¥æ‰¾ï¼Œä¸‹æ ‡èŒƒå›´low+num1+num2~high
         Coin(low + num1 + num2, high, num3);
 }
