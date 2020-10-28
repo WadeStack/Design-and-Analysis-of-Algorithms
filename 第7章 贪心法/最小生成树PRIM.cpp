@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 const int n = 6;
-const int max = 100;
+const int MAX = 100;
 typedef struct
 {
     int lowcost;
@@ -12,9 +12,9 @@ void Prim(int arc[n][n], int w);
 
 int main( )
 {
-    int arc[n][n] = {{max, 34, 46, max,max,19},
-        {34, max, max,max,12, max},{46, max, max, 17, max, 25},
-        {max, max, 17, max, 38, 25},{max, 12, 38, max, 26},{19, max, 25, 25, 26, max}
+    int arc[n][n] = {{MAX, 34, 46, MAX,MAX,19},
+        {34, MAX, MAX,MAX,12, MAX},{46, MAX, MAX, 17, MAX, 25},
+        {MAX, MAX, 17, MAX, 38, 25},{MAX, 12, 38, MAX, 26},{19, MAX, 25, 25, 26, MAX}
     };
     Prim(arc, 0);
     return 0;
@@ -25,15 +25,15 @@ void Prim(int arc[n][n], int w)
     int i, j, k;
     int min;
     Element shortEdge[10];
-    for (i = 0; i < n; i++)        //³õÊ¼»¯¸¨ÖúÊý×éshortEdge
+    for (i = 0; i < n; i++)        //åˆå§‹åŒ–è¾…åŠ©æ•°ç»„shortEdge
     {
         shortEdge[i].lowcost = arc[w][i];
         shortEdge[i].adjvex = w;
     }
-    shortEdge[w].lowcost = 0;             //½«¶¥µã0¼ÓÈë¼¯ºÏU
+    shortEdge[w].lowcost = 0;             //å°†é¡¶ç‚¹0åŠ å…¥é›†åˆU
     for (i = 0; i < n - 1; i++)
     {
-        for (min = 100, j = 0; j < n; j++)           //Ñ°ÕÒ×î¶Ì±ßµÄÁÚ½Óµãk
+        for (min = 100, j = 0; j < n; j++)           //å¯»æ‰¾æœ€çŸ­è¾¹çš„é‚»æŽ¥ç‚¹k
         {
             if((shortEdge[j].lowcost != 0) && (shortEdge[j].lowcost < min))
             {
@@ -42,8 +42,8 @@ void Prim(int arc[n][n], int w)
             }
         }
         cout<<shortEdge[k].adjvex<<"--"<<k<<endl;
-        shortEdge[k].lowcost = 0;             //½«¶¥µãk¼ÓÈë¼¯ºÏUÖÐ
-        for (j = 0; j < n; j++)                //µ÷ÕûÊý×éshortEdge[n]
+        shortEdge[k].lowcost = 0;             //å°†é¡¶ç‚¹kåŠ å…¥é›†åˆUä¸­
+        for (j = 0; j < n; j++)                //è°ƒæ•´æ•°ç»„shortEdge[n]
         {
             if (arc[k][j] < shortEdge[j].lowcost)
             {
@@ -53,4 +53,3 @@ void Prim(int arc[n][n], int w)
         }
     }
 }
-
